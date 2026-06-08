@@ -11,21 +11,35 @@ public class scoreFetcher  {
     public scoreFetcher(List<ProjectQuestion> studentList,List<String>studentAnswer) {
 this.studentAnswer=studentAnswer;
         this.studentList = studentList;
+
     }
 
-    public void scoreGotten(){
 
-        for(ProjectQuestion eachAnswer:studentList){
-            System.out.println(eachAnswer+" the scoregotten list");
-        }
 
-         //implementing  functional interface
-        userScoreObtained myScore=()->{
+    public void theScore(){
+      //creating an object only works for functional interface
 
-              //looping throught the list answers for each question at a time
 
+        userScoreObtained scoreResult=()->{
+            int theStuScore=0;
+            for(int j=0;j<studentList.size();j++){
+                ProjectQuestion stuList=studentList.get(j);
+                String stuAns=studentAnswer.get(j);
+                if(stuList.getAnswer().equalsIgnoreCase(stuAns)){
+                    System.out.println(" option "+j+" is correct");
+                    theStuScore++;
+                }
+                else{
+                    System.out.println("wrong answer");
+                }
+
+            }
+            System.out.println("your score is "+theStuScore);
         };
-    }
+
+scoreResult.scoreObtained();
+
+  };
 
 
 }

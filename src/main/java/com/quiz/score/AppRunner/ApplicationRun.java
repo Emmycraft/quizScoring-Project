@@ -9,8 +9,8 @@ public class ApplicationRun {
         scoreFetcher userScoreCall=new scoreFetcher(runQuiz.getQuizList(),runQuiz.getUserAnswer());
         runQuiz.addQuestion();
         runQuiz.quesRead();
+userScoreCall.theScore();
 
-        userScoreCall.scoreGotten();
 
 
 

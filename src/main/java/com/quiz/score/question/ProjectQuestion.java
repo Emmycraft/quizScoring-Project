@@ -1,13 +1,12 @@
 package com.quiz.score.question;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectQuestion {
     private String questionId;
     private String theQuestion;
     private String answer;
-    private List<String> options=new ArrayList<>();
+    private List<String> options;
     //adding the constructor
 
     public ProjectQuestion(String questionId, String theQuestion, String answer, List<String> options) {
@@ -41,6 +40,7 @@ public class ProjectQuestion {
                 ", theQuestion='" + theQuestion + '\'' +
                 ", answer='" + answer + '\'' +
                 ", options=" + options +
-                '}';
+                '}'+
+                " the object";
     }
 }
