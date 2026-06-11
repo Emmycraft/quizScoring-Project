@@ -2,9 +2,12 @@ package com.quiz.score.questionServices;
 
 import com.quiz.score.question.ProjectQuestion;
 
+import javax.naming.InvalidNameException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class Quizzer implements questionReader, CollectInput {
     String userAnswerOpted;
@@ -44,14 +47,43 @@ quizList.add(new ProjectQuestion("ques2","who is the father of java","goosling",
     }
 
     @Override
-    public void scannedInput() {
-
+    public void scannedInput(ProjectQuestion currentQuestion) {
+try{
         Scanner scan=new Scanner(System.in);
         System.out.println("what is your own answer? ");
 //cant access in another method, make it a field to be accessible
      //   String userOption=scan.nextLine();
 userAnswerOpted =scan.nextLine();
+
+    if(!currentQuestion.getOptions().contains(userAnswerOpted)){
+        String[] design = {
+                "===============================",
+                "||                           ||",
+                "||   TERMINATING OPERATIONS  ||",
+                "||                           ||",
+                "===============================",
+                "       Please restart...       "
+        };
+
+        for (String line : design) {
+            System.out.println(line);
+            Thread.sleep(1000); // pause for half a second
+        }
+        throw new InvalidNameException("your option doesn't match");
+
     }
+}
+
+catch (InvalidNameException e){
+    System.out.println(e+" terminating program");
+
+    System.exit(1);
+}
+
+     catch (Exception e) {
+    System.out.println(e+" is not contained in the list");}}
+
+
 
     @Override
     public void quesRead() {
@@ -59,12 +91,13 @@ userAnswerOpted =scan.nextLine();
     for(ProjectQuestion quesPro:quizList){
 
         System.out.println(quesPro.getTheQuestion());
-        System.out.println(quesPro.getOptions());
-        scannedInput();
+        System.out.println(quesPro.getOptions()+"WWWW");
+
         //getting list capacity for sequential build
         int listCapacity=quizList.size();
         System.out.println(" the list capacity is ="+listCapacity);
        // for(int j=0;j<=ProjectQuestion)
+        scannedInput(quesPro);
         userAnswer.add(userAnswerOpted);
 
 
